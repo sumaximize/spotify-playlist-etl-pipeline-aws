@@ -1,5 +1,5 @@
 # Spotify playlist ETL pipeline on AWS
-**Objectives**: Designing a fully-automated ETL pipeline on AWS to extract Spotify's weekly _Top Songs - Global_ playlist
+**Objectives**: Designing a fully-automated ETL pipeline on AWS to extract Spotify's weekly _Top Songs - Global_ playlist and store the Artist, Album and Song data on AWS Glue Data Catalog tables.
 
 ## Solution Architecture
 ![solution architecture](./spotify-playlist-etl-pipeline-aws.png)
@@ -19,7 +19,12 @@ spotify_transformation_load_functions
 contains Lambda Function code to transform raw data and extract artist, album and song structured data.
 
 
-## AWS Service Configuration
+## Implementation of Services
+
+**Spotify API**
+
+One would need developer app credentials (_Client ID_, _Client Secret_) to transact with the _Spotify Web API_. You can follow how to create them [here](https://developer.spotify.com/documentation/web-api). 
+
 **Amazon EventBridge**
 - Create new **EventBridge Rule** to run at a given schedule (eg. every 1 day, week).
 - Set the trigger's target to be the Lambda function for Data Extraction from the Spotify API.
